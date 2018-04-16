@@ -1,0 +1,21 @@
+{
+  "name": "html_boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplates",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tavares Evora",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "normalize.css": "^8.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.5.0"
+  }
+}
