@@ -1,15 +1,16 @@
 const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = (env, options) => {
   const inDevMode = options.mode === 'development'
   return {
     entry: {
-      app: './src/assets/js/app.js'
+      app: ['./src/assets/scss/app.scss', './src/assets/js/app.js']
     },
     output: {
       path: path.resolve(__dirname, 'public/assets/js'),
       filename: inDevMode ? '[name].js' : '[name].[chunkhash:8].js',
-      publicPath: '/public/assets/'
+      publicPath: '/public/'
     },
     module: {
       rules: [
@@ -22,6 +23,7 @@ module.exports = (env, options) => {
           test: /\.css$/,
           use: [
             'style-loader',
+            MiniCssExtractPlugin.loader,
             { loader: 'css-loader', options: { importLoaders: 1 } }
           ]
         },
@@ -29,6 +31,7 @@ module.exports = (env, options) => {
           test: /\.scss$/,
           use: [
             'style-loader',
+            MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader', options: {
                 importLoaders: 1,
@@ -51,6 +54,12 @@ module.exports = (env, options) => {
         },
       ]
     },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: "[name].css",
+        chunkFilename: "[id].css"
+      })
+    ],
     devtool: inDevMode ? 'cheap-module-eval-source-map' : false
   }
 }
