@@ -62,7 +62,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/public/assets/";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -78,7 +78,9 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("var txt = 'Jean';\n\nconsole.log('hello ' + txt);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXNzZXRzL2pzL2FwcC5qcy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9zcmMvYXNzZXRzL2pzL2FwcC5qcz9lYTlhIl0sInNvdXJjZXNDb250ZW50IjpbImxldCB0eHQgPSAnSmVhbidcclxuXHJcbmNvbnNvbGUubG9nKCdoZWxsbyAnICsgdHh0KVxyXG4iXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/assets/js/app.js\n");
+var txt = 'Jean';
+
+console.log('hello ' + txt);
 
 /***/ })
 
