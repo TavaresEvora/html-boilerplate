@@ -1,0 +1,11 @@
+{
+  "extends": "airbnb",
+  "rules": {
+      "linebreak-style": ["error", "windows"],
+      "semi": ["error", "never"]
+  },
+  "env": {
+      "browser": true,
+      "node": true
+  }
+}

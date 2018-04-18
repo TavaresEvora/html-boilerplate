@@ -1,16 +1,17 @@
 const path = require('path')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const ManifestPlugin = require('webpack-manifest-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
-module.exports = (env, options) => {
+const config = (env, options) => {
   const inDevMode = options.mode === 'development'
   return {
     entry: {
       app: ['./src/assets/scss/app.scss', './src/assets/js/app.js']
     },
     output: {
-      path: path.resolve(__dirname, 'public/assets/js'),
+      path: path.resolve(__dirname, 'public/assets'),
       filename: inDevMode ? '[name].js' : '[name].[chunkhash:8].js',
-      publicPath: '/public/'
+      publicPath: '/assets/'
     },
     module: {
       rules: [
@@ -21,45 +22,64 @@ module.exports = (env, options) => {
         },
         {
           test: /\.css$/,
-          use: [
-            'style-loader',
-            MiniCssExtractPlugin.loader,
-            { loader: 'css-loader', options: { importLoaders: 1 } }
-          ]
+          use: ExtractTextPlugin.extract({
+            fallback: "style-loader",
+            use: [
+              // MiniCssExtractPlugin.loader,
+              {
+                loader: 'css-loader', options: {
+                  importLoaders: 1,
+                  sourceMap: inDevMode
+                }
+              }
+            ]
+          }),
         },
         {
           test: /\.scss$/,
-          use: [
-            'style-loader',
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader', options: {
-                importLoaders: 1,
-                minimize: !inDevMode
+
+          use: ExtractTextPlugin.extract({
+            fallback: "style-loader",
+            use: [
+              // MiniCssExtractPlugin.loader,
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: inDevMode,
+                  importLoaders: 1,
+                  minimize: !inDevMode
+                }
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: inDevMode
+                }
+              },
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: inDevMode
+                }
               }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: (loader) => [
-                  // TODO: Checker les plugins interessant
-                  require('autoprefixer')({
-                    browsers: ['last 2 versions', 'ie > 8']
-                  }),
-                ]
-              }
-            },
-            'sass-loader'
-          ]
+            ]
+          })
         },
       ]
     },
     plugins: [
-      new MiniCssExtractPlugin({
-        filename: "[name].css",
-        chunkFilename: "[id].css"
-      })
+      // new MiniCssExtractPlugin({
+      //   filename: "[name].css",
+      //   chunkFilename: "[id].css"
+      // }),
+      new ExtractTextPlugin({
+        filename: '[name].css',
+        disable: inDevMode
+      }),
+      new ManifestPlugin()
     ],
     devtool: inDevMode ? 'cheap-module-eval-source-map' : false
   }
 }
+
+module.exports = config
