@@ -10,15 +10,22 @@ const config = (env, options) => {
     },
     output: {
       path: path.resolve(__dirname, 'public/assets'),
-      filename: inDevMode ? '[name].js' : '[name].[chunkhash:8].js',
+      filename: '[name].js',
       publicPath: '/assets/'
+    },
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+      alias: {
+        '@': path.resolve(__dirname, 'src/assets'),
+        '~': path.resolve(__dirname, 'node_modules')
+      }
     },
     module: {
       rules: [
         {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
-          use: ['babel-loader']
+          use: ['babel-loader', 'eslint-loader']
         },
         {
           test: /\.css$/,
@@ -64,6 +71,16 @@ const config = (env, options) => {
               }
             ]
           })
+        },
+        {
+          test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf|wav)(\?.*)?$/,
+          use: [{
+            loader: 'file-loader',
+            options: {
+              name: `[name]${inDevMode ? '' : '.[hash]'}.[ext]`,
+              useRelativePath: !inDevMode
+            }
+          }]
         },
       ]
     },

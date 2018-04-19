@@ -1,3 +1,3 @@
-let txt = 'Jean'
+const txt = 'Jean'
 
-console.log('hello ' + txt)
+console.log(`hello ${txt} !!!`)
