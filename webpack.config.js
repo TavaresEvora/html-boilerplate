@@ -20,6 +20,10 @@ const config = (env, options) => {
         '~': path.resolve(__dirname, 'node_modules')
       }
     },
+    // devtool: inDevMode ? 'cheap-module-eval-source-map' : false,
+    devServer: {
+      contentBase: path.join(__dirname, "public"),
+    },
     module: {
       rules: [
         {
@@ -85,17 +89,12 @@ const config = (env, options) => {
       ]
     },
     plugins: [
-      // new MiniCssExtractPlugin({
-      //   filename: "[name].css",
-      //   chunkFilename: "[id].css"
-      // }),
       new ExtractTextPlugin({
         filename: '[name].css',
         disable: inDevMode
       }),
       new ManifestPlugin()
     ],
-    devtool: inDevMode ? 'cheap-module-eval-source-map' : false
   }
 }
 
