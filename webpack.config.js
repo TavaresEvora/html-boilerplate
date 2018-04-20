@@ -1,6 +1,7 @@
 const path = require('path')
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = (env, options) => {
   const inDevMode = options.mode === 'development'
@@ -20,7 +21,6 @@ const config = (env, options) => {
         '~': path.resolve(__dirname, 'node_modules')
       }
     },
-    // devtool: inDevMode ? 'cheap-module-eval-source-map' : false,
     devServer: {
       contentBase: path.join(__dirname, "public"),
     },
@@ -89,6 +89,11 @@ const config = (env, options) => {
       ]
     },
     plugins: [
+      new HtmlWebpackPlugin({
+        filename: '../index.html',
+        template: path.resolve(__dirname, 'src/index.html'),
+        minify: true,
+      }),
       new ExtractTextPlugin({
         filename: '[name].css',
         disable: inDevMode
