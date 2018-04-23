@@ -1,6 +1,6 @@
 const path = require('path')
-const ManifestPlugin = require('webpack-manifest-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ManifestPlugin = require('webpack-manifest-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = (env, options) => {
@@ -12,17 +12,17 @@ const config = (env, options) => {
     output: {
       path: path.resolve(__dirname, 'public/assets'),
       filename: '[name].js',
-      publicPath: '/assets/'
+      publicPath: '/assets/',
     },
     resolve: {
-      modules: [path.resolve(__dirname, "src"), "node_modules"],
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
       alias: {
         '@': path.resolve(__dirname, 'src/assets'),
-        '~': path.resolve(__dirname, 'node_modules')
-      }
+        '~': path.resolve(__dirname, 'node_modules'),
+      },
     },
     devServer: {
-      contentBase: path.join(__dirname, "src"),
+      contentBase: path.join(__dirname, 'src'),
     },
     module: {
       rules: [
@@ -34,23 +34,24 @@ const config = (env, options) => {
         {
           test: /\.css$/,
           use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
+            fallback: 'style-loader',
             use: [
               // MiniCssExtractPlugin.loader,
               {
-                loader: 'css-loader', options: {
+                loader: 'css-loader',
+                options: {
                   importLoaders: 1,
-                  sourceMap: inDevMode
-                }
-              }
-            ]
+                  sourceMap: inDevMode,
+                },
+              },
+            ],
           }),
         },
         {
           test: /\.scss$/,
 
           use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
+            fallback: 'style-loader',
             use: [
               // MiniCssExtractPlugin.loader,
               {
@@ -58,23 +59,23 @@ const config = (env, options) => {
                 options: {
                   sourceMap: inDevMode,
                   importLoaders: 1,
-                  minimize: !inDevMode
-                }
+                  minimize: !inDevMode,
+                },
               },
               {
                 loader: 'postcss-loader',
                 options: {
-                  sourceMap: inDevMode
-                }
+                  sourceMap: inDevMode,
+                },
               },
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: inDevMode
-                }
-              }
-            ]
-          })
+                  sourceMap: inDevMode,
+                },
+              },
+            ],
+          }),
         },
         {
           test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf|wav)(\?.*)?$/,
@@ -82,11 +83,11 @@ const config = (env, options) => {
             loader: 'file-loader',
             options: {
               name: `[name]${inDevMode ? '' : '.[hash]'}.[ext]`,
-              useRelativePath: !inDevMode
-            }
-          }]
+              useRelativePath: !inDevMode,
+            },
+          }],
         },
-      ]
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -97,9 +98,9 @@ const config = (env, options) => {
       }),
       new ExtractTextPlugin({
         filename: '[name].css',
-        disable: inDevMode
+        disable: inDevMode,
       }),
-      new ManifestPlugin()
+      new ManifestPlugin(),
     ],
   }
 }
