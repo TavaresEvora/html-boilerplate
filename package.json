@@ -1,11 +1,8 @@
 {
   "name": "html_boilerplate",
   "version": "0.0.1",
-  "description": "Webpack HTML5-Boilerplates",
-  "main": "index.js",
-  "directories": {
-    "doc": "doc"
-  },
+  "description": "Front-end webpack configuration pour une intégration rapide",
+  "keywords": ["webpack", "boilerplate", "integration"],
   "scripts": {
     "dev": "webpack --mode=development",
     "watch": "webpack --mode=development --watch",
@@ -13,7 +10,7 @@
     "build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Tavares Evora",
+  "author": "Tavares Evora <tavares.evora.v@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
