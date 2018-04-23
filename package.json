@@ -1,7 +1,7 @@
 {
   "name": "html_boilerplate",
-  "version": "1.0.0",
-  "description": "Boilerplates",
+  "version": "0.0.1",
+  "description": "Webpack HTML5-Boilerplates",
   "main": "index.js",
   "directories": {
     "doc": "doc"

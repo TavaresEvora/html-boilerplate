@@ -1,5 +1,4 @@
 {
   "app.js": "/assets/app.js",
-  "app.css": "/assets/app.css",
   "../index.html": "/assets/../index.html"
 }

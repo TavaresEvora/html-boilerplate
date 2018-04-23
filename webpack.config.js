@@ -22,7 +22,7 @@ const config = (env, options) => {
       }
     },
     devServer: {
-      contentBase: path.join(__dirname, "public"),
+      contentBase: path.join(__dirname, "src"),
     },
     module: {
       rules: [
@@ -93,6 +93,7 @@ const config = (env, options) => {
         filename: '../index.html',
         template: path.resolve(__dirname, 'src/index.html'),
         minify: true,
+        inject: false,
       }),
       new ExtractTextPlugin({
         filename: '[name].css',
