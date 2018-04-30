@@ -7,7 +7,7 @@ const config = (env, options) => {
   const inDevMode = options.mode === 'development'
   return {
     entry: {
-      app: ['./src/assets/scss/app.scss', './src/assets/js/app.js']
+      app: ['./src/assets/scss/app.scss', './src/assets/js/app.js'],
     },
     output: {
       path: path.resolve(__dirname, 'public/assets'),
@@ -29,7 +29,7 @@ const config = (env, options) => {
         {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
-          use: ['babel-loader', 'eslint-loader']
+          use: ['babel-loader', 'eslint-loader'],
         },
         {
           test: /\.css$/,

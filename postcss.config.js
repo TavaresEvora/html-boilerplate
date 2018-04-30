@@ -1,6 +1,7 @@
 module.exports = {
   plugins: {
-    autoprefixer: {},
+    autoprefixer: {
+      browsers: ['last 2 versions', 'ie > 8'],
+    },
   },
-  browserslist: ['last 2 versions', 'ie > 8'],
 }

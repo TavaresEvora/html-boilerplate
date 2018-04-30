@@ -1,12 +1,19 @@
 // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
-
+// Normalize.css
+@import '~normalize.css/normalize.css';
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500|Raleway:400,500');
 body {
+  display: flex;
   height: 100vh;
-  background-color: red;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  font-family: 'Raleway', sans-serif;
 }
 
-footer {
-  font-size: 22px;
-  transform: translateX(100%);
+h1 {
+  font-family: 'Montserrat', sans-serif;
 }
